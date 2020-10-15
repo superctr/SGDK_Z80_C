@@ -71,7 +71,7 @@ inline void* convert_addr(u32 addr)
 inline void* inc_addr(void* addr, u8 inc)
 {
 	u16 out = (u16)addr + inc;
-	if(out < 0x8000)
+	if(!(out & 0x8000))
 	{
 		out |= 0x8000;
 		next_bank();
