@@ -20,7 +20,7 @@ Currently this is only tested on windows.
 - 68K can halt Z80 when it is in the middle of reading stuff, so be careful
 when transferring commands larger than a single byte.
 - Keep in mind that the YM2612 requires a minimum waiting period between register writes, and between address and register writes.
-- As a rule of thumb, around 50 Z80 cycles are needed between register writes, and 15 cycles between register and address. SDCC generates assembly listings (containing cycle counts) in `z80/obj`, check there for details.
+- As a rule of thumb, around 50 Z80 cycles are needed between register writes, and 15 cycles between address and register. SDCC generates assembly listings (containing cycle counts) in `z80/obj`, check there for details.
 - Add nops as necessary (using inlined ASM) in the unlikely case that SDCC manages to generate code that violates the above timing rule.
 - Use fixed addresses in Z80 space for communication with the 68k. On the 68k side, use `#define`s and volatile pointers to read/write Z80 memory, and on the Z80 side, use the `__at (address)` to directly specify an address for a variable.
 - Make sure all your Z80 code and variables fit in 8kb of memory. Initialized variables take twice the amount of space.

@@ -66,13 +66,16 @@ inline void* convert_addr(u32 addr)
 
 //! Increment address within bank area.
 /*!
- *  If out of bounds, bank is automatically added
+ *  If out of bounds, bank is automatically incremented
  */
 inline void* inc_addr(void* addr, u8 inc)
 {
 	u16 out = (u16)addr + inc;
 	if(out < 0x8000)
+	{
+		out |= 0x8000;
 		next_bank();
+	}
 	return (void*) out;
 }
 
